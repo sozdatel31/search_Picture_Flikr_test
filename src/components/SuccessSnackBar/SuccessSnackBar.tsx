@@ -5,7 +5,7 @@ import {AppRootStateType} from '../../redux/store';
 import {RequestStatusType, setAppStatus} from '../../redux/settingsReducer';
 import Alert from '@material-ui/lab/Alert';
 
-export function SuccessSnackBar(props: { value: string }) {
+export function SuccessSnackbar(props: { value: string }) {
     const status = useSelector<AppRootStateType, RequestStatusType>(state => state.settings.status);
     const dispatch = useDispatch();
 

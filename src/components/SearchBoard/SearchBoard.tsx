@@ -2,7 +2,7 @@ import React, {ChangeEvent, KeyboardEvent} from 'react';
 import {Grid, TextField} from '@material-ui/core';
 import {ImageCard} from "../ImageCard/ImageCard";
 import {ErrorSnackbar} from "../Error/ErrorSnackbar";
-import {SuccessSnackBar} from "../SuccessSnackBar/SuccessSnackBar";
+import {SuccessSnackbar} from "../SuccessSnackBar/SuccessSnackBar";
 import s from "./SearchBoard.module.css"
 import {DomainPhotoType} from "../../redux/appReducer";
 import {InputAdornment} from '@material-ui/core';
@@ -42,7 +42,7 @@ export function SearchBoard(props: PropType) {
     return (
         <div>
             <ErrorSnackbar/>
-            <SuccessSnackBar value="Add picture success!"/>
+            <SuccessSnackbar value="Add picture success!"/>
             <TextField id="outlined-basic" label="Find images" variant="outlined" className={s.root}
                        error={!!error} helperText={error}
                        value={title} onChange={onChangeHandler} onKeyPress={onKeyPressHandler}
@@ -63,7 +63,7 @@ export function SearchBoard(props: PropType) {
                     <PaginationRounded currentPage={currentPage} totalPages={totalPages} isDisabled={isDisabled}
                                        nextPage={nextPage}/>
                 </div>
-                <Grid container direction="row" justify="center" alignItems="center" className={s.images}>
+                <Grid container className={s.images}>
                     {photo.map((img) => {
                         return <ImageCard key={img.id} picture={img} remotePhoto={() => remotePhoto(img.id, img)}
                                           description="Bookmark it!"/>

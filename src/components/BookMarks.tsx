@@ -5,7 +5,7 @@ import {AppRootStateType} from "../redux/store";
 import {DomainPhotoType} from "../redux/appReducer";
 import {removePicture, setPictures} from "../redux/localstorageReducer";
 import {Grid} from "@material-ui/core";
-import {SuccessSnackBar} from "./SuccessSnackBar/SuccessSnackBar";
+import {SuccessSnackbar} from "./SuccessSnackBar/SuccessSnackBar";
 import {setAppStatus} from "../redux/settingsReducer";
 import s from "./SearchBoard/SearchBoard.module.css";
 
@@ -25,8 +25,8 @@ export function BookMarks() {
 
     return (
         <div className={s.images}>
-            <SuccessSnackBar value="Delete picture success!"/>
-            <Grid container direction="row" justify="center" alignItems="center">
+            <SuccessSnackbar value="Delete picture success!"/>
+            <Grid container direction="row" justifyContent="center" alignItems="center">
                 {!!photo.length && photo.map((img) => {
                     return <ImageCard key={img.id} picture={img} remotePhoto={remotePhoto} description="Remove it"/>
                 })}
