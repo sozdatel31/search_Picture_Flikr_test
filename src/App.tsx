@@ -1,24 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {Header} from "./components/Header/Header";
+import {Container, Grid} from "@material-ui/core";
+import {Routes} from "./Routes";
+import {Nav} from './components/Nav/Nav';
+import {Footer} from "./components/Footer/Footer";
+import TransitionsModal from "./components/Modal";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <TransitionsModal/>
+        <Header/>
+        <Container maxWidth="xl" className="container">
+            <Grid container className="grid" >
+                <Nav/>
+                <div className="wrap-content">
+                    <Routes/>
+                </div>
+            </Grid>
+        </Container>
+
+        <Footer/>
     </div>
   );
 }

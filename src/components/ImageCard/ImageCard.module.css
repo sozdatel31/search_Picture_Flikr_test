@@ -1,0 +1,22 @@
+.itemsText {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    max-width: 345px;
+    height: 30px;
+    text-align: justify;
+}
+
+.root {
+    width: 345px;
+    margin: 10px;
+}
+
+.button {
+    justify-content: center;
+}
+
+.media {
+    min-height: 240px;
+}

@@ -1,0 +1,14 @@
+.menu {
+    width: 5%;
+    background: slategray;
+}
+
+.menu a button{
+    color: white;
+}
+
+.menu a.active button{
+    font-weight: bold;
+    color: lawngreen;
+}
+
