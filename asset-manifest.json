@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/search_Picture_Flikr_test/static/css/main.c97431c8.chunk.css",
+    "main.js": "/search_Picture_Flikr_test/static/js/main.6a910bc0.chunk.js",
+    "main.js.map": "/search_Picture_Flikr_test/static/js/main.6a910bc0.chunk.js.map",
+    "runtime-main.js": "/search_Picture_Flikr_test/static/js/runtime-main.216606ce.js",
+    "runtime-main.js.map": "/search_Picture_Flikr_test/static/js/runtime-main.216606ce.js.map",
+    "static/js/2.1ef69a21.chunk.js": "/search_Picture_Flikr_test/static/js/2.1ef69a21.chunk.js",
+    "static/js/2.1ef69a21.chunk.js.map": "/search_Picture_Flikr_test/static/js/2.1ef69a21.chunk.js.map",
+    "static/js/3.4d2127c5.chunk.js": "/search_Picture_Flikr_test/static/js/3.4d2127c5.chunk.js",
+    "static/js/3.4d2127c5.chunk.js.map": "/search_Picture_Flikr_test/static/js/3.4d2127c5.chunk.js.map",
+    "index.html": "/search_Picture_Flikr_test/index.html",
+    "static/css/main.c97431c8.chunk.css.map": "/search_Picture_Flikr_test/static/css/main.c97431c8.chunk.css.map",
+    "static/js/2.1ef69a21.chunk.js.LICENSE.txt": "/search_Picture_Flikr_test/static/js/2.1ef69a21.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.216606ce.js",
+    "static/js/2.1ef69a21.chunk.js",
+    "static/css/main.c97431c8.chunk.css",
+    "static/js/main.6a910bc0.chunk.js"
+  ]
+}
