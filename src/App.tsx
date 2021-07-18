@@ -8,22 +8,21 @@ import {Footer} from "./components/Footer/Footer";
 import TransitionsModal from "./components/Modal";
 
 function App() {
-  return (
-    <div className="App">
-        <TransitionsModal/>
-        <Header/>
-        <Container maxWidth="xl" className="container">
-            <Grid container className="grid" >
-                <Nav/>
-                <div className="wrap-content">
-                    <Routes/>
-                </div>
-            </Grid>
-        </Container>
-
-        <Footer/>
-    </div>
-  );
+    return (
+        <div className="App">
+            <TransitionsModal/>
+            <Header/>
+            <Container maxWidth="xl" className="container">
+                <Grid container className="grid">
+                    <Nav/>
+                    <div className="wrap-content">
+                        <Routes/>
+                    </div>
+                </Grid>
+            </Container>
+            <Footer/>
+        </div>
+    );
 }
 
 export default App;

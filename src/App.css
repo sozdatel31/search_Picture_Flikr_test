@@ -1,18 +1,19 @@
 .App {
-  text-align: center;
+    text-align: center;
 }
 
-.wrap-content{
-  background: honeydew;
-  width: 93%;
+.wrap-content {
+    background: honeydew;
+    width: 93%;
 }
+
 .container {
-  padding: 0 !important;
-  height: calc(100vh - 128px);
+    padding: 0 !important;
+    height: calc(100vh - 128px);
 }
 
-.grid{
-  height: 100%;
-  justify-content: flex-start;
-  direction: initial;
+.grid {
+    height: 100%;
+    justify-content: flex-start;
+    direction: initial;
 }

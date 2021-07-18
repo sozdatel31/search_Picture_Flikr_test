@@ -10,7 +10,7 @@ export function SuccessSnackbar(props: { value: string }) {
     const dispatch = useDispatch();
 
     const handleClose = () => {
-        dispatch(setAppStatus("idle"));
+        dispatch(setAppStatus({status: "idle"}));
     }
 
     return (

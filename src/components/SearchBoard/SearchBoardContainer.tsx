@@ -1,6 +1,6 @@
 import React, {ChangeEvent, KeyboardEvent, useCallback, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {DomainPhotoType, nextTasksTC, remotePhotoAC, setPagesAC, setPhotosAC, setTasksTC} from "../../redux/appReducer";
+import {DomainPhotoType, nextTasksTC, removePhotoAC, setPagesAC, setPhotosAC, setTasksTC} from "../../redux/appReducer";
 import {AppRootStateType} from "../../redux/store";
 import {addPicture} from "../../redux/localstorageReducer";
 import {setAppStatus} from "../../redux/settingsReducer";
@@ -31,7 +31,7 @@ export function SearchBoardContainer() {
     }, [dispatch])
 
     useEffect(() => {
-        dispatch(setPhotosAC([]));
+        dispatch(setPhotosAC({photos: []}));
         dispatch(setPagesAC({page: 1, pages: 0}));
     }, [dispatch]);
 
@@ -42,7 +42,7 @@ export function SearchBoardContainer() {
     const clearInput = () => {
         setTitle("");
         setError(null);
-        dispatch(setPhotosAC([]));
+        dispatch(setPhotosAC({photos: []}));
         dispatch(setPagesAC({page: 1, pages: 0}));
     }
 
@@ -51,13 +51,13 @@ export function SearchBoardContainer() {
     }
 
     const remotePhoto = (id: string, picture: DomainPhotoType) => {
-        dispatch(remotePhotoAC(id));
+        dispatch(removePhotoAC({photoId: id}));
         dispatch(addPicture(picture));
-        dispatch(setAppStatus("succeeded"));
+        dispatch(setAppStatus({status: "succeeded"}));
     }
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        if(!e.currentTarget.value) dispatch(setPhotosAC([]));
+        if(!e.currentTarget.value) dispatch(setPhotosAC({photos: []}));
         setTitle(e.currentTarget.value);
     }
 

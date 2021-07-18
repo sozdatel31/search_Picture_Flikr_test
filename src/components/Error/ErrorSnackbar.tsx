@@ -18,7 +18,7 @@ export function ErrorSnackbar() {
         if (reason === 'clickaway') {
             return
         }
-        dispatch(setAppError(undefined));
+        dispatch(setAppError({error: undefined}));
     }
 
     return (

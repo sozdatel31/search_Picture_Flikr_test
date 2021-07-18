@@ -14,13 +14,14 @@ export function BookMarks() {
     const photo = useSelector<AppRootStateType, Array<DomainPhotoType>>(state => state.localstorage);
     const dispatch = useDispatch();
 
+
     useEffect(() => {
         dispatch(setPictures());
     }, [])
 
     function remotePhoto(photoId: string) {
         dispatch(removePicture(photoId));
-        dispatch(setAppStatus("succeeded"));
+        dispatch(setAppStatus({status: "succeeded"}));
     }
 
     return (

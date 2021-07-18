@@ -4,8 +4,9 @@ import {AppRootStateType} from "./store";
 import {handleServerAppError} from "../components/Error/error-utils";
 import {setAppError, setAppErrorActionType} from "./settingsReducer";
 import {Dispatch} from "redux";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-const initialState: AppInitialStateType = {
+const initialState:AppInitialStateType = {
     page: 1,
     pages: 0,
     photo: [],
@@ -21,47 +22,40 @@ export type AppInitialStateType = {
     isDisabled: boolean
 }
 
-export const appReducer = (state: AppInitialStateType = initialState, action: ActionsType): AppInitialStateType => {
-    switch (action.type) {
-        case "APP/SET-PHOTOS":
-            return {
-                ...state,
-                photo: [
-                    ...action.photos.map(ph => {
-                        return {
-                            ...ph,
-                            url: ph.originalformat ?
-                                `https://live.staticflickr.com/${ph.server}/${ph.id}_${ph.secret}.${ph.originalformat}` :
-                                `https://live.staticflickr.com/${ph.server}/${ph.id}_${ph.secret}.jpg`
-                        }
-                    })
-                ]
+const slice = createSlice({
+    name: "app",
+    initialState: initialState,
+    reducers: {
+        setPhotosAC(state, action: PayloadAction<{ photos: Array<PhotoType>}>) {
+            state.photo = action.payload.photos.map(ph=> ({...ph,
+                url: ph.originalformat?`https://live.staticflickr.com/${ph.server}/${ph.id}_${ph.secret}.${ph.originalformat}` :
+                    `https://live.staticflickr.com/${ph.server}/${ph.id}_${ph.secret}.jpg`,
+            }))
+        },
+        removePhotoAC(state, action: PayloadAction<{photoId: string}>) {
+            const index = state.photo.findIndex(ph=>ph.id === action.payload.photoId)
+            if (index > -1) {
+                state.photo.splice(index, 1)
             }
-        case "APP/REMOVE-PHOTO":
-            return {
-                ...state,
-                photo: [...state.photo.filter(ph => ph.id !== action.photoId)]
-            }
-        case "APP/SET-PAGES":
-            return {...state, ...action.payload}
-        case "APP/NEXT-PAGES":
-            return {...state, page: action.page}
-        case "APP/DISABLED":
-            return {...state, isDisabled: action.isDisabled}
-        default:
-            return state
+        },
+        setPagesAC(state, action: PayloadAction<{ page: number, pages: number }>) {
+            state.page = action.payload.page
+            state.pages = action.payload.pages
+        },
+        nextPageAC(state, action: PayloadAction<{ page: number }>) {
+            state.page = action.payload.page
+        },
+        isDisabledAC(state, action: PayloadAction<{ isDisabled: boolean }>) {
+            state.isDisabled = action.payload.isDisabled
+        },
     }
-}
-
-export const setPhotosAC = (photos: Array<PhotoType>) => ({type: "APP/SET-PHOTOS", photos} as const);
-export const setPagesAC = (payload: { page: number, pages: number }) => ({type: "APP/SET-PAGES", payload} as const);
-export const nextPageAC = (page: number) => ({type: "APP/NEXT-PAGES", page} as const);
-export const remotePhotoAC = (photoId: string) => ({type: "APP/REMOVE-PHOTO", photoId} as const);
-export const isDisabledAC = (isDisabled: boolean) => ({type: "APP/DISABLED", isDisabled} as const);
+})
+export const {setPhotosAC, removePhotoAC, setPagesAC, nextPageAC, isDisabledAC} = slice.actions
+export const appReducer = slice.reducer
 
 type ActionsType =
     ReturnType<typeof setPhotosAC>
-    | ReturnType<typeof remotePhotoAC>
+    | ReturnType<typeof removePhotoAC>
     | ReturnType<typeof setPagesAC>
     | ReturnType<typeof nextPageAC>
     | ReturnType<typeof isDisabledAC>
@@ -71,18 +65,18 @@ type ThunkType = ThunkAction<void, AppRootStateType, unknown, ActionsType>
 
 export const setTasksTC = (text: string): ThunkType =>
     (dispatch) => {
-        dispatch(setPhotosAC([]));
-        dispatch(isDisabledAC(true));
+        dispatch(setPhotosAC({photos: []}));
+        dispatch(isDisabledAC({isDisabled: true}));
         appAPI.getPicture(text)
             .then(res => responseFn(res.data, dispatch))
             .catch(error => handleServerAppError(error, dispatch));
     }
 
 export const nextTasksTC = (text: string, page: number): ThunkType =>
-    (dispatch, getState: () => AppRootStateType) => {
-        dispatch(nextPageAC(page))
-        dispatch(isDisabledAC(true));
-        appAPI.getPicture(text, getState().app.page)
+    (dispatch) => {
+        dispatch(nextPageAC({page}))
+        dispatch(isDisabledAC({isDisabled:true}));
+        appAPI.getPicture(text, page)
             .then(res => responseFn(res.data, dispatch))
             .catch(error => handleServerAppError(error, dispatch));
     }
@@ -90,11 +84,11 @@ export const nextTasksTC = (text: string, page: number): ThunkType =>
 function responseFn(res: ResponseType, dispatch: Dispatch): void {
     if (res.stat === "ok") {
         if (res.photos.photo.length) {
-            dispatch(setPhotosAC(res.photos.photo));
+            dispatch(setPhotosAC({photos: res.photos.photo}));
             dispatch(setPagesAC({page: res.photos.page, pages: res.photos.pages}));
-            dispatch(isDisabledAC(false));
+            dispatch(isDisabledAC({isDisabled:false}));
         } else {
-            dispatch(setAppError("Error:( Please, try again/Please enter a valid query"))
+            dispatch(setAppError({error: "Error:( Please, try again/Please enter a valid query"}))
         }
     } else {
         handleServerAppError(res, dispatch)
