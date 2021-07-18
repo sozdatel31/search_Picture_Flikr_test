@@ -4,7 +4,7 @@
 }
 
 .images {
-    max-height: calc(100vh - 128px);
+    max-height: calc(100vh - 260px);
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -13,7 +13,11 @@
     overflow: auto;
 }
 
-.pagination {
+.images.fixHeight {
+    max-height: calc(100vh - 128px);
+}
+
+.pagination{
     margin: 10px 30px 10px 10px;
     display: flex;
     justify-content: flex-end;

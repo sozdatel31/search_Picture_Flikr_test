@@ -25,7 +25,7 @@ export function BookMarks() {
     }
 
     return (
-        <div className={s.images}>
+        <div className={`${s.images} ${s.fixHeight}`}>
             <SuccessSnackbar value="Delete picture success!"/>
             <Grid container direction="row" justifyContent="center" alignItems="center">
                 {!!photo.length && photo.map((img) => {

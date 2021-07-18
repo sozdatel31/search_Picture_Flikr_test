@@ -64,6 +64,7 @@ export function SearchBoard(props: PropType) {
                                        nextPage={nextPage}/>
                 </div>
                 <Grid container className={s.images}>
+
                     {photo.map((img) => {
                         return <ImageCard key={img.id} picture={img} remotePhoto={() => remotePhoto(img.id, img)}
                                           description="Bookmark it!"/>
