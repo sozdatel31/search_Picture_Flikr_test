@@ -1,5 +1,5 @@
 .menu {
-    width: 5%;
+    width: 7%;
     background: slategray;
 }
 
@@ -12,3 +12,8 @@
     color: lawngreen;
 }
 
+.grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

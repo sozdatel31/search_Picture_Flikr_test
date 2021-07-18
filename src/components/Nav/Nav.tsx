@@ -8,7 +8,7 @@ export function Nav() {
 
     return (
         <div className={style.menu}>
-            <Grid container direction="column" alignItems="center">
+            <Grid className={style.grid} >
                 <NavLink to="/search" activeClassName={style.active}>
                     <IconButton>
                         <Search/>
