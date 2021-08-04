@@ -1,6 +1,6 @@
 import React, {ChangeEvent, KeyboardEvent, useCallback, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {DomainPhotoType, nextTasksTC, removePhotoAC, setPagesAC, setPhotosAC, setTasksTC} from "../../redux/appReducer";
+import {DomainPhotoType, nextTasksTC, setPagesAC, setPhotosAC, setTasksTC} from "../../redux/appReducer";
 import {AppRootStateType} from "../../redux/store";
 import {addPicture} from "../../redux/localstorageReducer";
 import {setAppStatus} from "../../redux/settingsReducer";
@@ -51,7 +51,6 @@ export function SearchBoardContainer() {
     }
 
     const remotePhoto = (id: string, picture: DomainPhotoType) => {
-        dispatch(removePhotoAC({photoId: id}));
         dispatch(addPicture(picture));
         dispatch(setAppStatus({status: "succeeded"}));
     }

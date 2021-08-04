@@ -32,12 +32,6 @@ const slice = createSlice({
                     `https://live.staticflickr.com/${ph.server}/${ph.id}_${ph.secret}.jpg`,
             }))
         },
-        removePhotoAC(state, action: PayloadAction<{photoId: string}>) {
-            const index = state.photo.findIndex(ph=>ph.id === action.payload.photoId)
-            if (index > -1) {
-                state.photo.splice(index, 1)
-            }
-        },
         setPagesAC(state, action: PayloadAction<{ page: number, pages: number }>) {
             state.page = action.payload.page
             state.pages = action.payload.pages
@@ -50,12 +44,11 @@ const slice = createSlice({
         },
     }
 })
-export const {setPhotosAC, removePhotoAC, setPagesAC, nextPageAC, isDisabledAC} = slice.actions
+export const {setPhotosAC, setPagesAC, nextPageAC, isDisabledAC} = slice.actions
 export const appReducer = slice.reducer
 
 type ActionsType =
     ReturnType<typeof setPhotosAC>
-    | ReturnType<typeof removePhotoAC>
     | ReturnType<typeof setPagesAC>
     | ReturnType<typeof nextPageAC>
     | ReturnType<typeof isDisabledAC>
